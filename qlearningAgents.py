@@ -43,9 +43,6 @@ class QLearningAgent(ReinforcementAgent):
         ReinforcementAgent.__init__(self, **args)
 
         "*** YOUR CODE HERE ***"
-        
-        #Rusu Luiza
-        
         self.qValues = util.Counter()
 
     def getQValue(self, state, action):
@@ -55,9 +52,6 @@ class QLearningAgent(ReinforcementAgent):
           or the Q node value otherwise
         """
         "*** YOUR CODE HERE ***"
-        
-         #Rusu Luiza
-        
         return self.qValues[(state, action)]
 
 
@@ -69,9 +63,6 @@ class QLearningAgent(ReinforcementAgent):
           terminal state, you should return a value of 0.0.
         """
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         legalActions = self.getLegalActions(state)
         if not legalActions:
             return 0.0
@@ -85,9 +76,6 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        
-         #Rusu Luiza
-        
         legalActions = self.getLegalActions(state)
         if not legalActions:
             return None
@@ -106,12 +94,10 @@ class QLearningAgent(ReinforcementAgent):
           HINT: You might want to use util.flipCoin(prob)
           HINT: To pick randomly from a list, use random.choice(list)
         """
+        # Pick Action
         legalActions = self.getLegalActions(state)
         
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         if not legalActions:
             return None
         if util.flipCoin(self.epsilon):
@@ -128,9 +114,6 @@ class QLearningAgent(ReinforcementAgent):
           it will be called on your behalf
         """
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         sample = reward + self.discount * self.computeValueFromQValues(nextState)
         self.qValues[(state, action)] = (1 - self.alpha) * self.getQValue(state, action) + self.alpha * sample
 
@@ -195,9 +178,6 @@ class ApproximateQAgent(PacmanQAgent):
           where * is the dotProduct operator
         """
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         features = self.featExtractor.getFeatures(state, action)
         return sum(self.weights[feature] * value for feature, value in features.items())
 
@@ -206,9 +186,6 @@ class ApproximateQAgent(PacmanQAgent):
            Should update your weights based on transition
         """
         "*** YOUR CODE HERE ***"
-        
-         #Rusu Luiza
-        
         difference = (reward + self.discount * self.getValue(nextState)) - self.getQValue(state, action)
         features = self.featExtractor.getFeatures(state, action)
         for feature in features:
@@ -216,12 +193,12 @@ class ApproximateQAgent(PacmanQAgent):
 
     def final(self, state):
         "Called at the end of each game."
+        # call the super-class final method
         PacmanQAgent.final(self, state)
 
+        # did we finish training?
         if self.episodesSoFar == self.numTraining:
+            # you might want to print your weights here for debugging
             "*** YOUR CODE HERE ***"
-            
-             #Rusu Luiza
-            
             print("Finished training!")
             print("Weights:", self.weights)

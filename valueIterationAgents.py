@@ -60,10 +60,8 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.runValueIteration()
 
     def runValueIteration(self):
+        # Write value iteration code here
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         for i in range(self.iterations):
             values_copy = self.values.copy()
             for state in self.mdp.getStates():
@@ -92,9 +90,6 @@ class ValueIterationAgent(ValueEstimationAgent):
           value function stored in self.values.
         """
         "*** YOUR CODE HERE ***"
-        
-        #Rusu Luiza
-        
         q_value = 0
         for next_state, prob in self.mdp.getTransitionStatesAndProbs(state, action):
             reward = self.mdp.getReward(state, action, next_state)
@@ -111,9 +106,6 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         "*** YOUR CODE HERE ***"
-        
-        #Padeanu Andreea
-        
         if self.mdp.isTerminal(state):
             return None
 
@@ -158,9 +150,6 @@ class PrioritizedSweepingValueIterationAgent(ValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
-        
-        #Rusu Luiza
-        
         predecessors = {}
         for state in self.mdp.getStates():
             if not self.mdp.isTerminal(state):
